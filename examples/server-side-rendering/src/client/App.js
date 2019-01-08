@@ -8,6 +8,7 @@ const B = loadable(() => import('./letters/B'))
 const C = loadable(() => import(/* webpackPreload: true */ './letters/C'))
 const D = loadable(() => import(/* webpackPrefetch: true */ './letters/D'))
 const X = loadable(props => import(`./letters/${props.letter}`))
+const E = loadable(() => import('./letters/E'), {ssr: false, fallback: 'Loading...'})
 
 // We keep some references to prevent uglify remove
 A.C = C
@@ -21,6 +22,7 @@ const App = () => (
     <B />
     <X letter="A" />
     <Moment>{moment => moment().format('HH:mm')}</Moment>
+    <E />
   </div>
 )
 

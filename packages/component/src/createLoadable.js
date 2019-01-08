@@ -38,6 +38,11 @@ function createLoadable({ resolve = identity, render, onLoad }) {
           'SSR requires `@loadable/babel`, please install it',
         )
 
+        // Do not load if `ssr: false` option
+        if (!options.ssr && options.ssr !== undefined) {
+          return;
+        }
+
         // Server-side
         if (props.__chunkExtractor) {
           // We run load function, we assume that it won't fail and that it
